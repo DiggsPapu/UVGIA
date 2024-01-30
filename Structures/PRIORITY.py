@@ -14,8 +14,11 @@ class priority:
         return None
     def insert(self, newElement):
         if not self.empty():
-            index = bisect.bisect_left(self.items, newElement, 0, len(self.items), key=self.comparator)
-            self.items.insert(index, newElement)
+            index = 0
+            while self.comparator(newElement, self.items[index]) and index<len(self.items):
+                
+                index+=1
+                self.items.insert(index, newElement)
         else:
             self.items.append(newElement)
 
