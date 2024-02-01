@@ -1,5 +1,3 @@
-import bisect
-
 class priority:
     def __init__(self, items, comparator):
         self.items = items
@@ -15,21 +13,24 @@ class priority:
     def insert(self, newElement):
         if not self.empty():
             index = 0
-            while self.comparator(newElement, self.items[index]) and index<len(self.items):
-                
+            itemsLength = len(self.items)
+            while index<itemsLength and self.comparator(newElement, self.items[index]):
                 index+=1
-                self.items.insert(index, newElement)
+            if index<itemsLength:
+                self.items.insert(index, newElement)  
+            elif index==len(self.items):
+                self.items.append(newElement)
         else:
             self.items.append(newElement)
 
 def compare_strings(a, b):
-    return (a > b) - (a < b)
+    return (a >= b)
   
 
 pq = priority([], compare_strings)
-pq.insert("apple")
 pq.insert("banana")
 pq.insert("cherry")
-print(pq.first()) # apple
+pq.insert("apple")
+print(pq.items) # apple
 print(pq.remove_first()) # apple
-print(pq.first()) # banana
+print(pq.items) # banana
