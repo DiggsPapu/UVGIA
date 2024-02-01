@@ -22,15 +22,3 @@ class priority:
                 self.items.append(newElement)
         else:
             self.items.append(newElement)
-
-def compare_strings(a, b):
-    return (a >= b)
-  
-
-pq = priority([], compare_strings)
-pq.insert("banana")
-pq.insert("cherry")
-pq.insert("apple")
-print(pq.items) # apple
-print(pq.remove_first()) # apple
-print(pq.items) # banana
