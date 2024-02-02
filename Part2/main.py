@@ -1,9 +1,6 @@
 import openpyxl
+from Algorithms import *
 
-def readXls():
-    return None
-
-# Defining main function
 def main():
     heuristicPath = "/home/diggsy/UVG/UVGIA/Documents/heuristica.xlsx"
     costPath = "/home/diggsy/UVG/UVGIA/Documents/funcion_de_costo.xlsx"
@@ -29,7 +26,9 @@ def main():
         # Es un nuevo nodo
         else:
             graph[node_name]=[(direction,cost)]
+            
     print(graph)
+    BreadthFirstSearch(graph,"Warm-up activities","Stretching")
 # Using the special variable
 # __name__
 if __name__=="__main__":
