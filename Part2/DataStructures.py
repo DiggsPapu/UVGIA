@@ -22,6 +22,7 @@ class priority:
                 self.items.append(newElement)
         else:
             self.items.append(newElement)
+        return self.items
 
 class lifo:
     def __init__(self, items):
@@ -36,6 +37,7 @@ class lifo:
         return None
     def insert(self, newElement):
         self.items.append(newElement)
+        return self.items
         
 class fifo:
     def __init__(self, items):
@@ -50,3 +52,4 @@ class fifo:
         return None
     def insert(self, newElement):
         self.items.append(newElement)
+        return self.items

@@ -27,8 +27,12 @@ def main():
         else:
             graph[node_name]=[(direction,cost)]
             
-    print(graph)
-    BreadthFirstSearch(graph,"Warm-up activities","Stretching")
+    # print(graph)
+    print("BreadthFirstSearch", end=":")
+    BreadthFirstSearch(graph,"Warm-up activities")
+    print("\n\nDepthFirstSearch", end=":")
+    DepthFirstSearch(graph,  "Warm-up activities")
+    
 # Using the special variable
 # __name__
 if __name__=="__main__":
