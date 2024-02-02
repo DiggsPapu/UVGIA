@@ -28,10 +28,17 @@ def main():
             graph[node_name]=[(direction,cost)]
             
     # print(graph)
-    print("BreadthFirstSearch", end=":")
+    print("Breadth First Search without a final node", end=":\n")
     BreadthFirstSearch(graph,"Warm-up activities")
-    print("\n\nDepthFirstSearch", end=":")
+    
+    print("\n\nBreadth First Search with a final node", end=":\n")
+    BreadthFirstSearch(graph,"Warm-up activities", "Incline Bench")
+    
+    print("\n\nDepth First Search without a final node", end=":\n")
     DepthFirstSearch(graph,  "Warm-up activities")
+    
+    print("\n\nDepth First Search with a final node", end=":\n")
+    DepthFirstSearch(graph,  "Warm-up activities", "Skipping Rope")
     
 # Using the special variable
 # __name__

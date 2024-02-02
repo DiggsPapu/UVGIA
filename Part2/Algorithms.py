@@ -1,6 +1,6 @@
 from DataStructures import *
 
-def BreadthFirstSearch(graph: dict, init_node:str):
+def BreadthFirstSearch(graph: dict, init_node:str, goal_node:str=None):
     # Inicializo mi cola fifo junto con un array de nodos visitados
     queue = fifo([])
     visited = []
@@ -10,6 +10,9 @@ def BreadthFirstSearch(graph: dict, init_node:str):
     # se efectua mientras no este vacia la cola
     while queue.empty()==False:
         neighbours = graph.get(queue.first())
+        if goal_node is not None and queue.first()==goal_node:
+            print(queue.remove_first())
+            break
         print(queue.remove_first(), end=" -> ")
         if neighbours is not None:
             # Se visitan los vecinos y se insertan en la cola para ser explorados
@@ -19,7 +22,7 @@ def BreadthFirstSearch(graph: dict, init_node:str):
                     queue.insert(node_name)
                     visited.append(node_name)
 
-def DepthFirstSearch(graph:dict, init_node:str):
+def DepthFirstSearch(graph:dict, init_node:str, goal_node:str=None):
     # Inicializo mi cola lifo junto con un array de nodos visitados
     queue = lifo([])
     visited = []
@@ -28,6 +31,9 @@ def DepthFirstSearch(graph:dict, init_node:str):
     while queue.empty()==False:
         # Se remueve el nodo de la cola
         peek_node = queue.remove_first()
+        if goal_node is not None and peek_node==goal_node:
+            print(peek_node)
+            break
         print(peek_node, end=" -> ")
         # Se obtienen los nodos adyacentes
         set_adjacent = graph.get(peek_node)
@@ -40,3 +46,6 @@ def DepthFirstSearch(graph:dict, init_node:str):
                     # Si no ha sido visitado se aniade a la cola
                     if visited.count(node[0])<1:
                         queue.insert(node[0])
+
+# def UniformCostSearch(graph:dict, init_node:str):
+    
