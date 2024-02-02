@@ -3,19 +3,28 @@ from Algorithms import *
 
 def thisGraphComparator(newNode:tuple,node:tuple):
     return newNode[1]>=node[1]
+def thisHeuristicComparator(newNode:tuple, node:tuple):
+    return newNode[3]>=node[3]
 def main():
     heuristicPath = "/home/diggsy/UVG/UVGIA/Documents/heuristica.xlsx"
     costPath = "/home/diggsy/UVG/UVGIA/Documents/funcion_de_costo.xlsx"
     wb_heuristic = openpyxl.load_workbook(heuristicPath)
     wb_cost = openpyxl.load_workbook(costPath)
     # Get the first sheet 
-    # sheet = wb_heuristic.worksheets[0] 
+    sheet = wb_heuristic.worksheets[0] 
+    heuristicFunction = {}
+    for i, row in enumerate(sheet):
+        if i == 0 : continue
+        # Nombre del nodo
+        node_name =row[0].value
+        # Funcion euristica
+        heuristicValue=row[1].value
+        heuristicFunction[node_name]=heuristicValue        
     sheet = wb_cost.worksheets[0] 
     graph = {}
     for i, row in enumerate(sheet): 
         # Skip the first row (the row with the column names) 
-        if i == 0: 
-            continue
+        if i == 0: continue
         # Nombre del nodo
         node_name =row[0].value
         # Direccion
@@ -30,6 +39,8 @@ def main():
             graph[node_name]=[(direction,cost)]
             
     print(graph)
+    print(heuristicFunction)
+    
     print("Breadth First Search without a final node", end=":\n")
     BreadthFirstSearch(graph,"Warm-up activities")
     
@@ -44,6 +55,9 @@ def main():
     
     print("\n\nUniform Cost Search with a final node", end=":\n")
     UniformCostSearch(thisGraphComparator, graph,  "Warm-up activities", "Stretching")
+    
+    print("\n\nGreedy Best First Search with a final node", end=":\n")
+    GreedyBestFirstSearch(thisHeuristicComparator, graph,  "Warm-up activities", "Stretching", heuristicFunction)
     
 # Using the special variable
 # __name__
