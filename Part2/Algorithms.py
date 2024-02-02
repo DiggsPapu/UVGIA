@@ -47,5 +47,32 @@ def DepthFirstSearch(graph:dict, init_node:str, goal_node:str=None):
                     if visited.count(node[0])<1:
                         queue.insert(node[0])
 
-# def UniformCostSearch(graph:dict, init_node:str):
     
+def UniformCostSearch(comparator, graph:dict, init_node:str, goal_node:str):
+    queue = priority([],comparator)
+    visited = []
+    # los nodos almacenados en la cola sera el nombre del nodo, su costo y su trayecto
+    queue.insert((init_node,0,[init_node]))
+    while queue.empty()==False:
+        peek_node = queue.remove_first()
+        # Siempre y cuando no se hayan visitado ya los nodos, se van a explotar
+        if peek_node[0] not in visited:
+            # Se aniade el nodo a la lista de los nodos visitados
+            visited.append(peek_node)
+            # En caso de que sea el nodo objetivo se termina el ciclo
+            if peek_node[0] == goal_node:
+                for  i in range(len(peek_node[2])):
+                    print(peek_node[2][i],end='->')
+                print(str(peek_node[1]))
+                break
+            # Selecciono los nodos adyacentes del grafo
+            children = graph[peek_node[0]]
+            # Siempre y cuando lleve a algun lado
+            if children is not None:
+                # Se va a recorrer todos los nodos hijos
+                for child in children:
+                    route = []
+                    route.extend(peek_node[2])
+                    route.append(child[0])
+                    # Se encola y se calcula el costo total hasta ese nodo, ademas de que se realiza el trayecto hasta ese nodo
+                    queue.insert((child[0],child[1]+peek_node[1],route))

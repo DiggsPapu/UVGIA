@@ -1,6 +1,8 @@
 import openpyxl
 from Algorithms import *
 
+def thisGraphComparator(newNode:tuple,node:tuple):
+    return newNode[1]>=node[1]
 def main():
     heuristicPath = "/home/diggsy/UVG/UVGIA/Documents/heuristica.xlsx"
     costPath = "/home/diggsy/UVG/UVGIA/Documents/funcion_de_costo.xlsx"
@@ -27,7 +29,7 @@ def main():
         else:
             graph[node_name]=[(direction,cost)]
             
-    # print(graph)
+    print(graph)
     print("Breadth First Search without a final node", end=":\n")
     BreadthFirstSearch(graph,"Warm-up activities")
     
@@ -39,6 +41,9 @@ def main():
     
     print("\n\nDepth First Search with a final node", end=":\n")
     DepthFirstSearch(graph,  "Warm-up activities", "Skipping Rope")
+    
+    print("\n\nUniform Cost Search with a final node", end=":\n")
+    UniformCostSearch(thisGraphComparator, graph,  "Warm-up activities", "Stretching")
     
 # Using the special variable
 # __name__
