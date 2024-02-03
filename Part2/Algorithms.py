@@ -101,4 +101,36 @@ def GreedyBestFirstSearch(comparator, graph:dict, init_node:str, goal_node:str, 
                 route.append(child[0])
                 # Se encola y se calcula el costo total hasta ese nodo, ademas de que se realiza el trayecto hasta ese nodo
                 queue.insert((child[0],child[1]+peek_node[1],route,heuristicFunction[child[0]]))
-            
+
+def  AStarSearch(comparator, graph:dict, init_node:str, goal_node:str, heuristicFunction:dict):
+    queue = priority([], comparator)
+    visited = []
+    # los nodos almacenados en la cola sera el nombre del nodo, su costo, su trayecto y la funcion heuristica
+    queue.insert((init_node,0,[init_node],heuristicFunction[init_node]))
+    while queue.empty() == False:
+        # Se saca el nodo con el valor que determinamos en la heuristica y el comparator
+        peek_node = queue.remove_first()
+        # Se aniade a los nodos visitados
+        visited.append(peek_node)
+        # Selecciono los nodos adyacentes del grafo
+        children = graph[peek_node[0]]
+        # Siempre y cuando lleve a algun lado
+        if children is not None:
+            # Se va a recorrer todos los nodos hijos
+            for child in children:
+                 # En caso de que sea el nodo objetivo se termina el ciclo
+                if child[0] == goal_node:
+                    for  i in range(len(peek_node[2])):
+                        print(peek_node[2][i],end='->')
+                    print(child[0],end='->')
+                    print(str(peek_node[1]+child[1]))
+                    break 
+                route = []
+                route.extend(peek_node[2])
+                route.append(child[0])
+                total_cost = child[1]+peek_node[1]
+                heuristic = heuristicFunction[child[0]]
+                f_value = total_cost + heuristic
+                # Se encola y se calcula el costo total hasta ese nodo, ademas de que se realiza el trayecto hasta ese nodo
+                queue.insert((child[0],total_cost,route,heuristic,f_value))
+        

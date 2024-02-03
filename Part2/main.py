@@ -5,6 +5,8 @@ def thisGraphComparator(newNode:tuple,node:tuple):
     return newNode[1]>=node[1]
 def thisHeuristicComparator(newNode:tuple, node:tuple):
     return newNode[3]>=node[3]
+def thisFComparator(newNode:tuple, node:tuple):
+    return newNode[4]>=node[4]
 def main():
     heuristicPath = "/home/diggsy/UVG/UVGIA/Documents/heuristica.xlsx"
     costPath = "/home/diggsy/UVG/UVGIA/Documents/funcion_de_costo.xlsx"
@@ -59,6 +61,8 @@ def main():
     print("\n\nGreedy Best First Search with a final node", end=":\n")
     GreedyBestFirstSearch(thisHeuristicComparator, graph,  "Warm-up activities", "Stretching", heuristicFunction)
     
+    print("\n\nA* Search with a final node", end=":\n")
+    AStarSearch(thisFComparator, graph,  "Warm-up activities", "Stretching", heuristicFunction)
 # Using the special variable
 # __name__
 if __name__=="__main__":
