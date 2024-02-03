@@ -14,14 +14,15 @@ def BreadthFirstSearch(graph: dict, init_node:str, goal_node:str=None):
         if goal_node is not None and queue.first()==goal_node:
             print(queue.remove_first())
             break
-        print(queue.remove_first(), end=" -> ")
-        if neighbours is not None:
-            # Se visitan los vecinos y se insertan en la cola para ser explorados
-            for node in neighbours:
-                node_name = node[0]
-                if visited.count(node_name)<1:
-                    queue.insert(node_name)
-                    visited.append(node_name)
+        else:
+            print(queue.remove_first(), end=" -> ")
+            if neighbours is not None:
+                # Se visitan los vecinos y se insertan en la cola para ser explorados
+                for node in neighbours:
+                    node_name = node[0]
+                    if visited.count(node_name)<1:
+                        queue.insert(node_name)
+                        visited.append(node_name)
     print("\nIteraciones en el while: "+str(iteration))
 
 def DepthFirstSearch(graph:dict, init_node:str, goal_node:str=None):
@@ -72,17 +73,18 @@ def UniformCostSearch(comparator, graph:dict, init_node:str, goal_node:str):
                     print(peek_node[2][i],end='->')
                 print(str(peek_node[1]))
                 break
-            # Selecciono los nodos adyacentes del grafo
-            children = graph[peek_node[0]]
-            # Siempre y cuando lleve a algun lado
-            if children is not None:
-                # Se va a recorrer todos los nodos hijos
-                for child in children:
-                    route = []
-                    route.extend(peek_node[2])
-                    route.append(child[0])
-                    # Se encola y se calcula el costo total hasta ese nodo, ademas de que se realiza el trayecto hasta ese nodo
-                    queue.insert((child[0],child[1]+peek_node[1],route))
+            else:
+                # Selecciono los nodos adyacentes del grafo
+                children = graph[peek_node[0]]
+                # Siempre y cuando lleve a algun lado
+                if children is not None:
+                    # Se va a recorrer todos los nodos hijos
+                    for child in children:
+                        route = []
+                        route.extend(peek_node[2])
+                        route.append(child[0])
+                        # Se encola y se calcula el costo total hasta ese nodo, ademas de que se realiza el trayecto hasta ese nodo
+                        queue.insert((child[0],child[1]+peek_node[1],route))
     print("\nIteraciones en el while: "+str(iteration))
 
 def GreedyBestFirstSearch(comparator, graph:dict, init_node:str, goal_node:str, heuristicFunction:dict):
@@ -100,53 +102,36 @@ def GreedyBestFirstSearch(comparator, graph:dict, init_node:str, goal_node:str, 
                 print(peek_node[2][i],end='->')
             print(str(peek_node[1]))
             break       
-        # Selecciono los nodos adyacentes del grafo
-        children = graph[peek_node[0]]
-        # Siempre y cuando lleve a algun lado
-        if children is not None:
-            # Se va a recorrer todos los nodos hijos
-            for child in children:
-                route = []
-                route.extend(peek_node[2])
-                route.append(child[0])
-                # Se encola y se calcula el costo total hasta ese nodo, ademas de que se realiza el trayecto hasta ese nodo
-                queue.insert((child[0],child[1]+peek_node[1],route,heuristicFunction[child[0]]))
+        else:
+            # Selecciono los nodos adyacentes del grafo
+            children = graph[peek_node[0]]
+            # Siempre y cuando lleve a algun lado
+            if children is not None:
+                # Se va a recorrer todos los nodos hijos
+                for child in children:
+                    route = []
+                    route.extend(peek_node[2])
+                    route.append(child[0])
+                    # Se encola y se calcula el costo total hasta ese nodo, ademas de que se realiza el trayecto hasta ese nodo
+                    queue.insert((child[0],child[1]+peek_node[1],route,heuristicFunction[child[0]]))
     print("\nIteraciones en el while: "+str(iteration))                
-
-def  AStarSearch(comparator, graph:dict, init_node:str, goal_node:str, heuristicFunction:dict):
+def AStarSearch(comparator, graph: dict, init_node: str, goal_node: str, heuristicFunction: dict):
     iteration = 0
     queue = priority([], comparator)
-    visited = []
-    # los nodos almacenados en la cola sera el nombre del nodo, su costo, su trayecto y la funcion heuristica
-    queue.insert((init_node,0,[init_node],heuristicFunction[init_node]))
-    found_node = False
-    while queue.empty() == False and not found_node:
-        iteration +=1
-        # Se saca el nodo con el valor que determinamos en la heuristica y el comparator
+    queue.insert((init_node, 0, [init_node], heuristicFunction[init_node]))
+    while not queue.empty():
+        iteration += 1
         peek_node = queue.remove_first()
-        # Se aniade a los nodos visitados
-        visited.append(peek_node)
-        # Selecciono los nodos adyacentes del grafo
-        children = graph[peek_node[0]]
-        # Siempre y cuando lleve a algun lado
+        if peek_node[0] == goal_node:
+            for i in range(len(peek_node[2])):
+                print(peek_node[2][i], end='->')
+            print(str(peek_node[1]))
+            break
+        children = graph.get(peek_node[0])
         if children is not None:
-            # Se va a recorrer todos los nodos hijos
             for child in children:
-                 # En caso de que sea el nodo objetivo se termina el ciclo
-                if child[0] == goal_node:
-                    for  i in range(len(peek_node[2])):
-                        print(peek_node[2][i],end='->')
-                    print(child[0],end='->')
-                    print(str(peek_node[1]+child[1]))
-                    print("\nIteraciones en el while: "+str(iteration))
-                    found_node = True
-                    break 
-                route = []
-                route.extend(peek_node[2])
-                route.append(child[0])
-                total_cost = child[1]+peek_node[1]
-                heuristic = heuristicFunction[child[0]]
-                f_value = total_cost + heuristic
-                # Se encola y se calcula el costo total hasta ese nodo, ademas de que se realiza el trayecto hasta ese nodo
-                queue.insert((child[0],total_cost,route,heuristic,f_value))
-        
+                route = peek_node[2] + [child[0]]
+                total_cost = peek_node[1] + child[1]
+                f_value = total_cost + heuristicFunction[child[0]]
+                queue.insert((child[0], total_cost, route, heuristicFunction[child[0]], f_value))
+    print("\nIterations:", iteration)

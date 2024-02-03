@@ -53,7 +53,7 @@ def main():
     
     print("\n\nBreadth First Search with a final node", end=":\n")
     start_time = time.time()
-    BreadthFirstSearch(graph,"Warm-up activities", "Incline Bench")
+    BreadthFirstSearch(graph,"Warm-up activities", "Stretching")
     elapsed_time = -start_time + time.time()
     print("Elapsed time:", elapsed_time, " s")
     
@@ -66,7 +66,7 @@ def main():
 
     print("\n\nDepth First Search with a final node", end=":\n")
     start_time = time.time()
-    DepthFirstSearch(graph,  "Warm-up activities", "Skipping Rope")
+    DepthFirstSearch(graph,  "Warm-up activities", "Stretching")
     elapsed_time = -start_time + time.time()
     print("Elapsed time:", elapsed_time, " s")
     
