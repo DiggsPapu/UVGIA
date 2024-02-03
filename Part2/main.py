@@ -1,5 +1,6 @@
 import openpyxl
 from Algorithms import *
+import time
 
 def thisGraphComparator(newNode:tuple,node:tuple):
     return newNode[1]>=node[1]
@@ -44,25 +45,49 @@ def main():
     print(heuristicFunction)
     
     print("Breadth First Search without a final node", end=":\n")
+    start_time = time.time()
     BreadthFirstSearch(graph,"Warm-up activities")
+    elapsed_time = -start_time + time.time()
+    print("Elapsed time:", elapsed_time, " s")
+    
     
     print("\n\nBreadth First Search with a final node", end=":\n")
+    start_time = time.time()
     BreadthFirstSearch(graph,"Warm-up activities", "Incline Bench")
+    elapsed_time = -start_time + time.time()
+    print("Elapsed time:", elapsed_time, " s")
+    
     
     print("\n\nDepth First Search without a final node", end=":\n")
+    start_time = time.time()
     DepthFirstSearch(graph,  "Warm-up activities")
-    
+    elapsed_time = -start_time + time.time()
+    print("Elapsed time:", elapsed_time, " s")
+
     print("\n\nDepth First Search with a final node", end=":\n")
+    start_time = time.time()
     DepthFirstSearch(graph,  "Warm-up activities", "Skipping Rope")
+    elapsed_time = -start_time + time.time()
+    print("Elapsed time:", elapsed_time, " s")
+    
     
     print("\n\nUniform Cost Search with a final node", end=":\n")
+    start_time = time.time()
     UniformCostSearch(thisGraphComparator, graph,  "Warm-up activities", "Stretching")
+    elapsed_time = -start_time + time.time()
+    print("Elapsed time:", elapsed_time, " s")
     
     print("\n\nGreedy Best First Search with a final node", end=":\n")
+    start_time = time.time()
     GreedyBestFirstSearch(thisHeuristicComparator, graph,  "Warm-up activities", "Stretching", heuristicFunction)
+    elapsed_time = -start_time + time.time()
+    print("Elapsed time:", elapsed_time, " s")
     
     print("\n\nA* Search with a final node", end=":\n")
+    start_time = time.time()
     AStarSearch(thisFComparator, graph,  "Warm-up activities", "Stretching", heuristicFunction)
+    elapsed_time = -start_time + time.time()
+    print("Elapsed time:", elapsed_time, " s")
 # Using the special variable
 # __name__
 if __name__=="__main__":
