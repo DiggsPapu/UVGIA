@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-02-03T04:05:22.051Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36 Edg/121.0.0.0" etag="HuW5eKGnKyT0SXHnVhp3" version="23.0.2" type="github" pages="3">
+<mxfile host="app.diagrams.net" modified="2024-02-03T04:32:27.254Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36 Edg/121.0.0.0" etag="8PssDdnuIhhH3Dshlmxp" version="23.0.2" type="github" pages="3">
   <diagram name="Grafo" id="YYMiWOQQ2JgvEnZ93y6O">
     <mxGraphModel dx="1196" dy="585" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -378,7 +378,7 @@
           <mxGeometry x="330" y="950" width="80" height="80" as="geometry" />
         </mxCell>
         <mxCell id="vw2Lc19UTgB3lN3StXde-50" value="Iteracion 0" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="100" y="120" width="60" height="30" as="geometry" />
+          <mxGeometry x="120" y="165" width="60" height="30" as="geometry" />
         </mxCell>
         <mxCell id="vw2Lc19UTgB3lN3StXde-53" value="STACK:&lt;br&gt;&lt;ol&gt;&lt;li&gt;&lt;br&gt;&lt;/li&gt;&lt;/ol&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
           <mxGeometry x="550" y="970" width="120" height="60" as="geometry" />
@@ -1146,11 +1146,14 @@
         <mxCell id="vw2Lc19UTgB3lN3StXde-314" value="VISITED:&lt;br&gt;&lt;ol&gt;&lt;li&gt;0&lt;/li&gt;&lt;li&gt;4&lt;/li&gt;&lt;li&gt;9&lt;/li&gt;&lt;li&gt;12&lt;/li&gt;&lt;li&gt;13&lt;/li&gt;&lt;/ol&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
           <mxGeometry x="4085" y="920" width="120" height="150" as="geometry" />
         </mxCell>
+        <mxCell id="MnA859scXfTdaL6X7UAA-1" value="&lt;h1&gt;DEPTH FIRST SEARCH&lt;/h1&gt;&lt;p&gt;Simbología&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Rojo significan nodos explorados&lt;/li&gt;&lt;li&gt;Stack para almacenar los nodos&lt;/li&gt;&lt;li&gt;Visited es un array con los nodos ya visitados&lt;/li&gt;&lt;li&gt;el nodo 13 es el nodo final&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="90" y="25" width="350" height="155" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
   <diagram id="Ci3x_Nw1P7CrojKV4vp0" name="GreedyBestFirstSearch">
-    <mxGraphModel dx="3824" dy="2140" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1593" dy="892" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1336,13 +1339,13 @@
           <mxGeometry x="330" y="950" width="80" height="80" as="geometry" />
         </mxCell>
         <mxCell id="d8d3D3ULFfyCKx6sXtNe-1" value="Paso 1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="100" y="120" width="60" height="30" as="geometry" />
+          <mxGeometry x="110" y="170" width="60" height="30" as="geometry" />
         </mxCell>
         <mxCell id="y1jtRGOA1r5Xi7bbxmPx-1" value="PRIORITYQUEUE:&lt;br&gt;&lt;ol&gt;&lt;li&gt;0&lt;/li&gt;&lt;/ol&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
           <mxGeometry x="550" y="970" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="y1jtRGOA1r5Xi7bbxmPx-54" value="&lt;h1&gt;Simbología&lt;/h1&gt;&lt;p&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;El verde significa nodo ya marcado.&lt;/li&gt;&lt;li&gt;El rojo significa nodo ya examinado&lt;/li&gt;&lt;li&gt;El 13 significa nodo final u objetivo, se termina.&lt;/li&gt;&lt;li&gt;Hay una cola de prioridad para moverse.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="100" y="15" width="420" height="125" as="geometry" />
+        <mxCell id="y1jtRGOA1r5Xi7bbxmPx-54" value="&lt;h1&gt;GREEDY FIRST SEARCH&lt;/h1&gt;&lt;div&gt;Simbología:&lt;/div&gt;&lt;p&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;El verde significa nodo ya marcado.&lt;/li&gt;&lt;li&gt;El rojo significa nodo ya examinado&lt;/li&gt;&lt;li&gt;El 13 significa nodo final u objetivo, se termina.&lt;/li&gt;&lt;li&gt;Hay una cola de prioridad para moverse.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="70" y="15" width="420" height="125" as="geometry" />
         </mxCell>
         <mxCell id="iFjYp-iTi6heeYnBF56T-51" value="10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="iFjYp-iTi6heeYnBF56T-58" target="iFjYp-iTi6heeYnBF56T-61" edge="1">
           <mxGeometry relative="1" as="geometry" />
