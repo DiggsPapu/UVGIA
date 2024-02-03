@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-02-03T04:32:27.254Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36 Edg/121.0.0.0" etag="8PssDdnuIhhH3Dshlmxp" version="23.0.2" type="github" pages="3">
+<mxfile host="app.diagrams.net" modified="2024-02-03T04:34:33.600Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36 Edg/121.0.0.0" etag="5YPzm5PBNDe3_17WvqAZ" version="23.0.2" type="github" pages="3">
   <diagram name="Grafo" id="YYMiWOQQ2JgvEnZ93y6O">
     <mxGraphModel dx="1196" dy="585" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -1148,6 +1148,9 @@
         </mxCell>
         <mxCell id="MnA859scXfTdaL6X7UAA-1" value="&lt;h1&gt;DEPTH FIRST SEARCH&lt;/h1&gt;&lt;p&gt;Simbología&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Rojo significan nodos explorados&lt;/li&gt;&lt;li&gt;Stack para almacenar los nodos&lt;/li&gt;&lt;li&gt;Visited es un array con los nodos ya visitados&lt;/li&gt;&lt;li&gt;el nodo 13 es el nodo final&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="90" y="25" width="350" height="155" as="geometry" />
+        </mxCell>
+        <mxCell id="b8aeGBZeBOc6JFV5nww1-1" value="Como es el final se termina el algoritmo.&lt;br&gt;solución: 0-&amp;gt;4-&amp;gt;9-&amp;gt;12-&amp;gt;13" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="3610" y="55" width="280" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
