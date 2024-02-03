@@ -41,8 +41,8 @@ def main():
         else:
             graph[node_name]=[(direction,cost)]
             
-    print(graph)
-    print(heuristicFunction)
+    # print(graph)
+    # print(heuristicFunction)
     
     print("Breadth First Search without a final node", end=":\n")
     start_time = time.time()
