@@ -1,6 +1,6 @@
 
 import numpy as np
-
+import matplotlib.pyplot as plt
 def generate_labyrinth():
     labyrinth = np.zeros((64, 64), dtype=int)  # Initialize a matrix of zeros
 
@@ -83,3 +83,23 @@ def generateBasicLabyrinth():
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1]
     ]
+
+def visualize_labyrinth(matrix):
+    cmap = plt.cm.colors.ListedColormap(['white', 'black', 'green', 'red'])
+
+    plt.imshow(matrix, cmap=cmap, interpolation='none')
+
+    # Agregar leyenda para los valores
+    values = np.unique(matrix)
+    labels = ['Path', 'Wall', 'Entrance', 'Exit']
+
+    plt.xticks([], [])
+    plt.yticks([], [])
+
+    # Crear leyenda
+    patches = [plt.Line2D([0], [0], marker='o', color='w', label=label, 
+                markerfacecolor=cmap(value)) for label, value in zip(labels, values)]
+    plt.legend(handles=patches, loc='center', bbox_to_anchor=(0.5, -0.15), fancybox=True, shadow=True, ncol=4)
+
+    plt.show()   
+    

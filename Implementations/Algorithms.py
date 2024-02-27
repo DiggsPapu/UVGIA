@@ -7,15 +7,20 @@ def BreadthFirstSearch(graph: dict, init_node:str, goal_node:str=None):
     # Aniado el nodo inicial a los nodos visitados y lo inserto en la cola
     visited.append(init_node)
     queue.insert(init_node)
+    path = []
     # se efectua mientras no este vacia la cola
     while queue.empty()==False:
         iteration +=1
         neighbours = graph.get(queue.first())
         if goal_node is not None and queue.first()==goal_node:
-            print(queue.remove_first())
+            nnode = queue.remove_first()
+            print(nnode)
+            path.append(nnode)
             break
         else:
-            print(queue.remove_first(), end=" -> ")
+            nnode = queue.remove_first()
+            print(nnode, end=" -> ")
+            path.append(nnode)
             if neighbours is not None:
                 # Se visitan los vecinos y se insertan en la cola para ser explorados
                 for node in neighbours:
@@ -24,6 +29,7 @@ def BreadthFirstSearch(graph: dict, init_node:str, goal_node:str=None):
                         queue.insert(node_name)
                         visited.append(node_name)
     print("\nIteraciones en el while: "+str(iteration))
+    return path
 
 def DepthFirstSearch(graph:dict, init_node:str, goal_node:str=None):
     iteration = 0
@@ -31,6 +37,7 @@ def DepthFirstSearch(graph:dict, init_node:str, goal_node:str=None):
     queue = lifo([])
     visited = []
     queue.insert(init_node)
+    path = []
     # Mientras que no este vacia la cola se realiza esto
     while queue.empty()==False:
         iteration +=1
@@ -38,8 +45,10 @@ def DepthFirstSearch(graph:dict, init_node:str, goal_node:str=None):
         peek_node = queue.remove_first()
         if goal_node is not None and peek_node==goal_node:
             print(peek_node)
+            path.append(peek_node)
             break
         print(peek_node, end=" -> ")
+        path.append(peek_node)
         # Se obtienen los nodos adyacentes
         set_adjacent = graph.get(peek_node)
         if peek_node not in visited:
@@ -52,6 +61,7 @@ def DepthFirstSearch(graph:dict, init_node:str, goal_node:str=None):
                     if visited.count(node[0])<1:
                         queue.insert(node[0])
     print("\nIteraciones en el while: "+str(iteration))
+    return path
     
 def DepthDelimitedSearch(graph:dict, init_node:str, goal_node:str=None, limit_depth=50):
     iteration = 0
@@ -61,6 +71,7 @@ def DepthDelimitedSearch(graph:dict, init_node:str, goal_node:str=None, limit_de
     current_depth = 0
     queue.insert((init_node, current_depth))
     ya = False
+    path = []
     # Mientras que no este vacia la cola se realiza esto
     while queue.empty()==False:
         iteration +=1
@@ -68,9 +79,11 @@ def DepthDelimitedSearch(graph:dict, init_node:str, goal_node:str=None, limit_de
         peek_node, current_depth = queue.remove_first()
         if goal_node is not None and peek_node==goal_node:
             print(peek_node)
+            path.append(peek_node)
             ya = True
             break
         print(peek_node, end=" -> ")
+        path.append(peek_node)
         # Se obtienen los nodos adyacentes
         set_adjacent = graph.get(peek_node)
         if peek_node not in visited and current_depth<limit_depth:
@@ -88,6 +101,7 @@ def DepthDelimitedSearch(graph:dict, init_node:str, goal_node:str=None, limit_de
         print("No se encontró el nodo objetivo")
     else:
         print("Se encontró el nodo objetivo")
+    return path
      
 def UniformCostSearch(comparator, graph:dict, init_node:str, goal_node:str):
     iteration = 0
@@ -121,6 +135,7 @@ def UniformCostSearch(comparator, graph:dict, init_node:str, goal_node:str):
                         # Se encola y se calcula el costo total hasta ese nodo, ademas de que se realiza el trayecto hasta ese nodo
                         queue.insert((child[0],child[1]+peek_node[1],route))
     print("\nIteraciones en el while: "+str(iteration))
+    # return path
 
 def GreedyBestFirstSearch(comparator, graph:dict, init_node:str, goal_node:str, heuristicFunction:dict):
     iteration = 0
@@ -128,6 +143,7 @@ def GreedyBestFirstSearch(comparator, graph:dict, init_node:str, goal_node:str, 
     visited = []
     # los nodos almacenados en la cola sera el nombre del nodo, su costo, su trayecto y la funcion heuristica
     queue.insert((init_node,0,[init_node],heuristicFunction[init_node]))
+    path = None
     while queue.empty() == False:
         iteration +=1
         # Se saca el nodo con el valor que determinamos en la heuristica y el comparator
@@ -139,6 +155,8 @@ def GreedyBestFirstSearch(comparator, graph:dict, init_node:str, goal_node:str, 
                 for  i in range(len(peek_node[2])):
                     print(peek_node[2][i],end='->')
                 print(str(peek_node[1]))
+                path = peek_node[2]
+                path.append(peek_node[0])
                 break       
             else:
                 # Selecciono los nodos adyacentes del grafo
@@ -153,12 +171,14 @@ def GreedyBestFirstSearch(comparator, graph:dict, init_node:str, goal_node:str, 
                         # Se encola y se calcula el costo total hasta ese nodo, ademas de que se realiza el trayecto hasta ese nodo
                         queue.insert((child[0],child[1]+peek_node[1],route,heuristicFunction[child[0]]))
     print("\nIteraciones en el while: "+str(iteration)) 
-                   
+    return path
+       
 def AStarSearch(comparator, graph: dict, init_node: str, goal_node: str, heuristicFunction: dict):
     iteration = 0
     queue = priority([], comparator)
     visited = []
     queue.insert((init_node, 0, [init_node], heuristicFunction[init_node]))
+    path = None
     while not queue.empty():
         iteration += 1
         peek_node = queue.remove_first()
@@ -168,6 +188,8 @@ def AStarSearch(comparator, graph: dict, init_node: str, goal_node: str, heurist
                 for i in range(len(peek_node[2])):
                     print(peek_node[2][i], end='->')
                 print(str(peek_node[1]))
+                path = peek_node[2]
+                path.append(peek_node[0])
                 break
             children = graph.get(peek_node[0])
             if children is not None:
@@ -177,3 +199,4 @@ def AStarSearch(comparator, graph: dict, init_node: str, goal_node: str, heurist
                     f_value = total_cost + heuristicFunction[child[0]]
                     queue.insert((child[0], total_cost, route, heuristicFunction[child[0]], f_value))
     print("\nIterations:", iteration)
+    return path
