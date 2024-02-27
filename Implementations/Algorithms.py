@@ -90,6 +90,7 @@ def UniformCostSearch(comparator, graph:dict, init_node:str, goal_node:str):
 def GreedyBestFirstSearch(comparator, graph:dict, init_node:str, goal_node:str, heuristicFunction:dict):
     iteration = 0
     queue = priority([], comparator)
+    visited = []
     # los nodos almacenados en la cola sera el nombre del nodo, su costo, su trayecto y la funcion heuristica
     queue.insert((init_node,0,[init_node],heuristicFunction[init_node]))
     while queue.empty() == False:
@@ -97,41 +98,46 @@ def GreedyBestFirstSearch(comparator, graph:dict, init_node:str, goal_node:str, 
         # Se saca el nodo con el valor que determinamos en la heuristica y el comparator
         peek_node = queue.remove_first()
         # En caso de que sea el nodo objetivo se termina el ciclo
-        if peek_node[0] == goal_node:
-            for  i in range(len(peek_node[2])):
-                print(peek_node[2][i],end='->')
-            print(str(peek_node[1]))
-            break       
-        else:
-            # Selecciono los nodos adyacentes del grafo
-            children = graph[peek_node[0]]
-            # Siempre y cuando lleve a algun lado
-            if children is not None:
-                # Se va a recorrer todos los nodos hijos
-                for child in children:
-                    route = []
-                    route.extend(peek_node[2])
-                    route.append(child[0])
-                    # Se encola y se calcula el costo total hasta ese nodo, ademas de que se realiza el trayecto hasta ese nodo
-                    queue.insert((child[0],child[1]+peek_node[1],route,heuristicFunction[child[0]]))
+        if peek_node[0] not in visited:
+            visited.append(peek_node[0])
+            if peek_node[0] == goal_node:
+                for  i in range(len(peek_node[2])):
+                    print(peek_node[2][i],end='->')
+                print(str(peek_node[1]))
+                break       
+            else:
+                # Selecciono los nodos adyacentes del grafo
+                children = graph[peek_node[0]]
+                # Siempre y cuando lleve a algun lado
+                if children is not None:
+                    # Se va a recorrer todos los nodos hijos
+                    for child in children:
+                        route = []
+                        route.extend(peek_node[2])
+                        route.append(child[0])
+                        # Se encola y se calcula el costo total hasta ese nodo, ademas de que se realiza el trayecto hasta ese nodo
+                        queue.insert((child[0],child[1]+peek_node[1],route,heuristicFunction[child[0]]))
     print("\nIteraciones en el while: "+str(iteration))                
 def AStarSearch(comparator, graph: dict, init_node: str, goal_node: str, heuristicFunction: dict):
     iteration = 0
     queue = priority([], comparator)
+    visited = []
     queue.insert((init_node, 0, [init_node], heuristicFunction[init_node]))
     while not queue.empty():
         iteration += 1
         peek_node = queue.remove_first()
-        if peek_node[0] == goal_node:
-            for i in range(len(peek_node[2])):
-                print(peek_node[2][i], end='->')
-            print(str(peek_node[1]))
-            break
-        children = graph.get(peek_node[0])
-        if children is not None:
-            for child in children:
-                route = peek_node[2] + [child[0]]
-                total_cost = peek_node[1] + child[1]
-                f_value = total_cost + heuristicFunction[child[0]]
-                queue.insert((child[0], total_cost, route, heuristicFunction[child[0]], f_value))
+        if peek_node[0] not in visited:
+            visited.append(peek_node[0])
+            if peek_node[0] == goal_node:
+                for i in range(len(peek_node[2])):
+                    print(peek_node[2][i], end='->')
+                print(str(peek_node[1]))
+                break
+            children = graph.get(peek_node[0])
+            if children is not None:
+                for child in children:
+                    route = peek_node[2] + [child[0]]
+                    total_cost = peek_node[1] + child[1]
+                    f_value = total_cost + heuristicFunction[child[0]]
+                    queue.insert((child[0], total_cost, route, heuristicFunction[child[0]], f_value))
     print("\nIterations:", iteration)

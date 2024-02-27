@@ -46,7 +46,20 @@ def main():
                 finalNode = str(i)+"-"+str(j)
             if matrix[i][j]==2:
                 entranceNode = str(i)+"-"+str(j)
-
+    keys_list = list(graph.keys())
+    euclideanHeuristic = {}
+    manhattanHeuristic = {}
+    fI, fJ = finalNode.split( "-")
+    for key in keys_list:
+        i, j = key.split("-")
+        node_name =key
+        # Funcion euristica euclideana
+        euclideanValue= ((int(fI)-int(i))**2+(int(fJ)-int(j))**2)**(0.5)
+        euclideanHeuristic[node_name]=euclideanValue
+        # Funcion euristica manhattan
+        manhattanValue= abs(int(fI)-int(i))+abs(int(fJ)-int(j))
+        euclideanHeuristic[node_name]=manhattanValue
+        manhattanHeuristic[node_name]=manhattanValue
     print("Breadth First Search without a final node", end=":\n")
     start_time = time.time()
     BreadthFirstSearch(graph,entranceNode)
@@ -73,24 +86,29 @@ def main():
     elapsed_time = -start_time + time.time()
     print("Elapsed time:", elapsed_time, " s")
     
+    print("\n\nGreedy Best First Search with euclidean heuristic", end=":\n")
+    start_time = time.time()
+    GreedyBestFirstSearch(thisHeuristicComparator, graph,entranceNode,finalNode, euclideanHeuristic)
+    elapsed_time = -start_time + time.time()
+    print("Elapsed time:", elapsed_time, " s")
     
-    # print("\n\nUniform Cost Search with a final node", end=":\n")
-    # start_time = time.time()
-    # UniformCostSearch(thisGraphComparator, graph,entranceNode,finalNode)
-    # elapsed_time = -start_time + time.time()
-    # print("Elapsed time:", elapsed_time, " s")
+    print("\n\nGreedy Best First Search with manhattan heuristic", end=":\n")
+    start_time = time.time()
+    GreedyBestFirstSearch(thisHeuristicComparator, graph,entranceNode,finalNode, manhattanHeuristic)
+    elapsed_time = -start_time + time.time()
+    print("Elapsed time:", elapsed_time, " s")
     
-    # print("\n\nGreedy Best First Search with a final node", end=":\n")
-    # start_time = time.time()
-    # GreedyBestFirstSearch(thisHeuristicComparator, graph,entranceNode,finalNode, heuristicFunction)
-    # elapsed_time = -start_time + time.time()
-    # print("Elapsed time:", elapsed_time, " s")
+    print("\n\nA* Search with a euclidean heuristic", end=":\n")
+    start_time = time.time()
+    AStarSearch(thisFComparator, graph,entranceNode,finalNode, euclideanHeuristic)
+    elapsed_time = -start_time + time.time()
+    print("Elapsed time:", elapsed_time, " s")
     
-    # print("\n\nA* Search with a final node", end=":\n")
-    # start_time = time.time()
-    # AStarSearch(thisFComparator, graph,entranceNode,finalNode, heuristicFunction)
-    # elapsed_time = -start_time + time.time()
-    # print("Elapsed time:", elapsed_time, " s")
+    print("\n\nA* Search with a manhattan heuristic", end=":\n")
+    start_time = time.time()
+    AStarSearch(thisFComparator, graph,entranceNode,finalNode, euclideanHeuristic)
+    elapsed_time = -start_time + time.time()
+    print("Elapsed time:", elapsed_time, " s")
 # Using the special variable
 __name__
 if __name__=="__main__":
