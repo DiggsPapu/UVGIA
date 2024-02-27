@@ -62,27 +62,33 @@ def main():
         manhattanHeuristic[node_name]=manhattanValue
     print("Breadth First Search without a final node", end=":\n")
     start_time = time.time()
-    BreadthFirstSearch(graph,entranceNode)
+    BreadthFirstSearch(graph, entranceNode)
     elapsed_time = -start_time + time.time()
     print("Elapsed time:", elapsed_time, " s")
     
     
     print("\n\nBreadth First Search with a final node", end=":\n")
     start_time = time.time()
-    BreadthFirstSearch(graph,entranceNode,finalNode)
+    BreadthFirstSearch(graph, entranceNode, finalNode)
     elapsed_time = -start_time + time.time()
     print("Elapsed time:", elapsed_time, " s")
     
     
     print("\n\nDepth First Search without a final node", end=":\n")
     start_time = time.time()
-    DepthFirstSearch(graph,entranceNode)
+    DepthFirstSearch(graph, entranceNode)
     elapsed_time = -start_time + time.time()
     print("Elapsed time:", elapsed_time, " s")
 
     print("\n\nDepth First Search with a final node", end=":\n")
     start_time = time.time()
-    DepthFirstSearch(graph,  entranceNode, finalNode)
+    DepthFirstSearch(graph, entranceNode, finalNode)
+    elapsed_time = -start_time + time.time()
+    print("Elapsed time:", elapsed_time, " s")
+    
+    print("\n\nDepth Limited Search", end=":\n")
+    start_time = time.time()
+    DepthDelimitedSearch(graph, entranceNode, finalNode,300)
     elapsed_time = -start_time + time.time()
     print("Elapsed time:", elapsed_time, " s")
     

@@ -52,8 +52,43 @@ def DepthFirstSearch(graph:dict, init_node:str, goal_node:str=None):
                     if visited.count(node[0])<1:
                         queue.insert(node[0])
     print("\nIteraciones en el while: "+str(iteration))
-
     
+def DepthDelimitedSearch(graph:dict, init_node:str, goal_node:str=None, limit_depth=50):
+    iteration = 0
+    # Inicializo mi cola lifo junto con un array de nodos visitados
+    queue = lifo([])
+    visited = []
+    current_depth = 0
+    queue.insert((init_node, current_depth))
+    ya = False
+    # Mientras que no este vacia la cola se realiza esto
+    while queue.empty()==False:
+        iteration +=1
+        # Se remueve el nodo de la cola
+        peek_node, current_depth = queue.remove_first()
+        if goal_node is not None and peek_node==goal_node:
+            print(peek_node)
+            ya = True
+            break
+        print(peek_node, end=" -> ")
+        # Se obtienen los nodos adyacentes
+        set_adjacent = graph.get(peek_node)
+        if peek_node not in visited and current_depth<limit_depth:
+            # Se marca como nodo visitado
+            visited.append(peek_node)
+            if set_adjacent is not None:
+                # Se aniaden todos los nodos adyacentes que no han sido visitados a la cola
+                for node in set_adjacent:
+                    # Si no ha sido visitado se aniade a la cola
+                    if visited.count(node[0])<1:
+                        queue.insert((node[0],current_depth+1))
+                
+    print("\nIteraciones en el while: "+str(iteration))
+    if (ya == False):
+        print("No se encontró el nodo objetivo")
+    else:
+        print("Se encontró el nodo objetivo")
+     
 def UniformCostSearch(comparator, graph:dict, init_node:str, goal_node:str):
     iteration = 0
     queue = priority([],comparator)
@@ -117,7 +152,8 @@ def GreedyBestFirstSearch(comparator, graph:dict, init_node:str, goal_node:str, 
                         route.append(child[0])
                         # Se encola y se calcula el costo total hasta ese nodo, ademas de que se realiza el trayecto hasta ese nodo
                         queue.insert((child[0],child[1]+peek_node[1],route,heuristicFunction[child[0]]))
-    print("\nIteraciones en el while: "+str(iteration))                
+    print("\nIteraciones en el while: "+str(iteration)) 
+                   
 def AStarSearch(comparator, graph: dict, init_node: str, goal_node: str, heuristicFunction: dict):
     iteration = 0
     queue = priority([], comparator)
