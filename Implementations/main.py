@@ -67,61 +67,6 @@ def main():
         manhattanValue= abs(int(fI)-int(i))+abs(int(fJ)-int(j))
         euclideanHeuristic[node_name]=manhattanValue
         manhattanHeuristic[node_name]=manhattanValue
-    print("Breadth First Search without a final node", end=":\n")
-    start_time = time.time()
-    bfs1P = BreadthFirstSearch(graph, entranceNode)
-    elapsed_time = -start_time + time.time()
-    print("Elapsed time:", elapsed_time, " s")
-    
-    
-    print("\n\nBreadth First Search with a final node", end=":\n")
-    start_time = time.time()
-    bfs2P = BreadthFirstSearch(graph, entranceNode, finalNode)
-    elapsed_time = -start_time + time.time()
-    print("Elapsed time:", elapsed_time, " s")
-    
-    
-    print("\n\nDepth First Search without a final node", end=":\n")
-    start_time = time.time()
-    dfs1P = DepthFirstSearch(graph, entranceNode)
-    elapsed_time = -start_time + time.time()
-    print("Elapsed time:", elapsed_time, " s")
-
-    print("\n\nDepth First Search with a final node", end=":\n")
-    start_time = time.time()
-    dfs2P = DepthFirstSearch(graph, entranceNode, finalNode)
-    elapsed_time = -start_time + time.time()
-    print("Elapsed time:", elapsed_time, " s")
-    
-    print("\n\nDepth Limited Search", end=":\n")
-    start_time = time.time()
-    ddsP = DepthDelimitedSearch(graph, entranceNode, finalNode,1000)
-    elapsed_time = -start_time + time.time()
-    print("Elapsed time:", elapsed_time, " s")
-    
-    print("\n\nGreedy Best First Search with euclidean heuristic", end=":\n")
-    start_time = time.time()
-    gbfsEP = GreedyBestFirstSearch(thisHeuristicComparator, graph,entranceNode,finalNode, euclideanHeuristic)
-    elapsed_time = -start_time + time.time()
-    print("Elapsed time:", elapsed_time, " s")
-    
-    print("\n\nGreedy Best First Search with manhattan heuristic", end=":\n")
-    start_time = time.time()
-    gbfsMP = GreedyBestFirstSearch(thisHeuristicComparator, graph,entranceNode,finalNode, manhattanHeuristic)
-    elapsed_time = -start_time + time.time()
-    print("Elapsed time:", elapsed_time, " s")
-    
-    print("\n\nA* Search with a euclidean heuristic", end=":\n")
-    start_time = time.time()
-    assEP = AStarSearch(thisFComparator, graph,entranceNode,finalNode, euclideanHeuristic)
-    elapsed_time = -start_time + time.time()
-    print("Elapsed time:", elapsed_time, " s")
-    
-    print("\n\nA* Search with a manhattan heuristic", end=":\n")
-    start_time = time.time()
-    assMP = AStarSearch(thisFComparator, graph,entranceNode,finalNode, manhattanHeuristic)
-    elapsed_time = -start_time + time.time()
-    print("Elapsed time:", elapsed_time, " s")
     
     clock = pygame.time.Clock()
     WIDTH, HEIGHT = 800, 800  # Set the window dimensions
@@ -131,6 +76,7 @@ def main():
     pygame.display.set_caption("Labyrinth")
     isRunning = True
     route = []
+    algorithm_name = None
     while isRunning:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -142,44 +88,102 @@ def main():
                 if event.key == pygame.K_ESCAPE:
                     isRunning = False
                 # bfs1P
-                if event.key == pygame.K_0:
+                if event.key == pygame.K_1:
+                    print("Breadth First Search without a final node", end=":\n")
+                    start_time = time.time()
+                    bfs1P = BreadthFirstSearch(graph, entranceNode)
+                    elapsed_time = -start_time + time.time()
+                    print("Elapsed time:", elapsed_time, " s")
                     route = createRoute(bfs1P, route)
-                elif event.key == pygame.K_1:
-                    route = createRoute(bfs2P, route)
+                    algorithm_name = "bfs1P"
                 elif event.key == pygame.K_2:
-                    route = createRoute(dfs1P, route)
+                    print("\n\nBreadth First Search with a final node", end=":\n")
+                    start_time = time.time()
+                    bfs2P = BreadthFirstSearch(graph, entranceNode, finalNode)
+                    elapsed_time = -start_time + time.time()
+                    print("Elapsed time:", elapsed_time, " s")
+                    route = createRoute(bfs2P, route)
+                    algorithm_name = "bfs2P"
                 elif event.key == pygame.K_3:
-                    route = createRoute(dfs2P, route)
+                    print("\n\nDepth First Search without a final node", end=":\n")
+                    start_time = time.time()
+                    dfs1P = DepthFirstSearch(graph, entranceNode)
+                    elapsed_time = -start_time + time.time()
+                    print("Elapsed time:", elapsed_time, " s")
+                    route = createRoute(dfs1P, route)
+                    algorithm_name = "dfs1P"
                 elif event.key == pygame.K_4:
-                    route = createRoute(ddsP, route)
+                    print("\n\nDepth First Search with a final node", end=":\n")
+                    start_time = time.time()
+                    dfs2P = DepthFirstSearch(graph, entranceNode, finalNode)
+                    elapsed_time = -start_time + time.time()
+                    print("Elapsed time:", elapsed_time, " s")
+                    route = createRoute(dfs2P, route)
+                    algorithm_name = "dfs2P"
                 elif event.key == pygame.K_5:
-                    route = createRoute(gbfsEP, route)
+                    print("\n\nDepth Limited Search", end=":\n")
+                    start_time = time.time()
+                    ddsP = DepthDelimitedSearch(graph, entranceNode, finalNode,1000)
+                    elapsed_time = -start_time + time.time()
+                    print("Elapsed time:", elapsed_time, " s")
+                    route = createRoute(ddsP, route)
+                    algorithm_name = "ddsP"
                 elif event.key == pygame.K_6:
-                    route = createRoute(gbfsMP, route)
+                    print("\n\nGreedy Best First Search with euclidean heuristic", end=":\n")
+                    start_time = time.time()
+                    gbfsEP = GreedyBestFirstSearch(thisHeuristicComparator, graph,entranceNode,finalNode, euclideanHeuristic)
+                    elapsed_time = -start_time + time.time()
+                    print("Elapsed time:", elapsed_time, " s")
+                    route = createRoute(gbfsEP, route)
+                    algorithm_name = "gbfsEP"
                 elif event.key == pygame.K_7:
-                    route = createRoute(assEP, route)
+                    print("\n\nGreedy Best First Search with manhattan heuristic", end=":\n")
+                    start_time = time.time()
+                    gbfsMP = GreedyBestFirstSearch(thisHeuristicComparator, graph,entranceNode,finalNode, manhattanHeuristic)
+                    elapsed_time = -start_time + time.time()
+                    print("Elapsed time:", elapsed_time, " s")
+                    route = createRoute(gbfsMP, route)
+                    algorithm_name = "gbfsMP"
                 elif event.key == pygame.K_8:
-                    route = createRoute(assMP, route)
+                    print("\n\nA* Search with a euclidean heuristic", end=":\n")
+                    start_time = time.time()
+                    assEP = AStarSearch(thisFComparator, graph,entranceNode,finalNode, euclideanHeuristic)
+                    elapsed_time = -start_time + time.time()
+                    print("Elapsed time:", elapsed_time, " s")
+                    route = createRoute(assEP, route)
+                    algorithm_name = "assEP"
                 elif event.key == pygame.K_9:
+                    print("\n\nA* Search with a manhattan heuristic", end=":\n")
+                    start_time = time.time()
+                    assMP = AStarSearch(thisFComparator, graph,entranceNode,finalNode, manhattanHeuristic)
+                    elapsed_time = -start_time + time.time()
+                    print("Elapsed time:", elapsed_time, " s")
+                    route = createRoute(assMP, route)
+                    algorithm_name = "assMP"
+                elif event.key == pygame.K_0:
                     route = []
-        window.fill((0, 0, 0))  # Fill the window with a black color
-        for i in range(64):
-            for j in range(64):
-                color = (0, 0, 0) if matrix[i][j] == 0 else (255, 255, 255)
-                pygame.draw.rect(window, color, (j * CELL_SIZE, i * CELL_SIZE, CELL_SIZE, CELL_SIZE))
+                    algorithm_name = None
+        if algorithm_name is None:
+            window.fill((0, 0, 0))  # Fill the window with a black color
+            for i in range(64):
+                for j in range(64):
+                    color = (0, 0, 0) if matrix[i][j] == 0 else (255, 255, 255)
+                    pygame.draw.rect(window, color, (j * CELL_SIZE, i * CELL_SIZE, CELL_SIZE, CELL_SIZE))
+                    
+            for i in range(64):
+                for j in range(64):
+                    if matrix[i][j] == 2:
+                        pygame.draw.rect(window, (0, 255, 0), (j * CELL_SIZE, i * CELL_SIZE, CELL_SIZE, CELL_SIZE))
+                    elif matrix[i][j] == 3:
+                        pygame.draw.rect(window, (255, 0, 0), (j * CELL_SIZE, i * CELL_SIZE, CELL_SIZE, CELL_SIZE))
+        else:            
+            for i, j in route:
+                pygame.draw.rect(window, (255, 165, 0), (int(j) * CELL_SIZE, int(i) * CELL_SIZE, CELL_SIZE, CELL_SIZE))
+                pygame.display.flip()  # Update the display after each node
+                pygame.time.delay(2)  # Add a delay between nodes
                 
-        for i in range(64):
-            for j in range(64):
-                if matrix[i][j] == 2:
-                    pygame.draw.rect(window, (0, 255, 0), (j * CELL_SIZE, i * CELL_SIZE, CELL_SIZE, CELL_SIZE))
-                elif matrix[i][j] == 3:
-                    pygame.draw.rect(window, (255, 0, 0), (j * CELL_SIZE, i * CELL_SIZE, CELL_SIZE, CELL_SIZE))
-                  
-        for i, j in route:
-            pygame.draw.rect(window, (255, 165, 0), (int(j) * CELL_SIZE, int(i) * CELL_SIZE, CELL_SIZE, CELL_SIZE))
-            pygame.display.flip()  # Update the display after each node
-            pygame.time.delay(2)  # Add a delay between nodes
-            
+            if algorithm_name is not None:
+                pygame.image.save(window, algorithm_name+".png")
         pygame.display.flip()
         clock.tick(60)  # Limit frames per second
 # Using the special variable
