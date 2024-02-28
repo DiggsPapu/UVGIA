@@ -15,14 +15,15 @@ def createRoute(path, route):
         route.append((i, j))
     return route
 def main():
-    matrix_path = "./test_maze.txt"
-    matrix = []
-    with open(matrix_path, 'r') as file:
-        # Read the contents of the file
-        file_contents = file.read()
-        for  line in file_contents.split('\n'):
-            matrix.append([int(item) for item in list(line)])
+    # matrix_path = "./test_maze.txt"
+    # matrix = []
+    # with open(matrix_path, 'r') as file:
+    #     # Read the contents of the file
+    #     file_contents = file.read()
+    #     for  line in file_contents.split('\n'):
+    #         matrix.append([int(item) for item in list(line)])
     # matrix = generateBasicLabyrinth()
+    matrix = generate_labyrinth(64, 64)
     graph = {}
     entranceNode = None
     finalNode = None
