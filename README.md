@@ -19,3 +19,6 @@ Esta sería la solución mediante el algoritmo de backtracking.
 * En la casa 1, la casa del noruego es dónde se toma el agua.
 
 Una posible configuración para representar este problema como una CSP, primero que nada es mediante global constraint que se resolvería a partir de un grafo de constraints para después realizar una descomposición de árbol para generar un conjunto de subproblemas conectados. Esto sería ideal, dado que se observaron que muchas restricciones están conectadas por lo que sería ideal ir resolviendo los subproblemas que están conectados para finalmente generar la solución.
+## Parte 3
+Este seria el árbol
+![image](https://github.com/DiggsPapu/UVGIA/assets/84475020/553c42ad-91c7-41ff-874f-f7a28b48e044)
