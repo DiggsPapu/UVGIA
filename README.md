@@ -12,7 +12,7 @@ Para limpiar los datos se siguió una estructura, en primer lugar limpiar los to
 ![alt text](image-2.png)
 Así mismo, se eliminaron las stop words que son aquellas palabras que no brindan significancia como pueden ser artículos.
 ![alt text](image-3.png)
-Después de esto se realizó un proceso de lematización que consiste en reducir una palabra a su forma raíz, por ejemplo, corre es un verbo que está conjugado en presente, sin embargo, correr es su forma raíz, de manera que la lematización sirve para normalizar las palabras de una forma que pueda entenderse.
+Así mismo, se dividió entre train y test el dataframe, después de esto se realizó un proceso de lematización que consiste en reducir una palabra a su forma raíz, por ejemplo, corre es un verbo que está conjugado en presente, sin embargo, correr es su forma raíz, de manera que la lematización sirve para normalizar las palabras de una forma que pueda entenderse.
 ![alt text](image-4.png)
 Así mismo, se realizó un procedimiento de stemming de manera que reduce las palabras a su raíz, pero no de la forma en la que lo hace la lematización que las reduce de una forma léxicamente aceptada, si no que puede reducirlo a su forma más básica que incluso puede generar palabras inválidas. Es por ello que se decidió realizar primero la lematización, ya que de esta forma se podía reducir la máxima cantidad de palabras a una raíz léxicamente correcta y ya después realizar el stemming que lo llevaría a una raíz que puede o no ser válida.
 ![alt text](image-5.png)
@@ -26,3 +26,18 @@ Tal como se pude observar se repiten palabras en ham y en spam, de manera que ex
 En primer lugar se dividió entre train y test el dataframe, así mismo, se calculó la probabilidad de que fuera un spam dependiendo de la frecuencia con la que aparece en textos spam o en textos ham. Después se desarrollo una función para predecir la probabilidad, la predicción de qué es sí la probabilidad es mayor a 0.5 y las palabras identificadas según un texto brindado. Así mismo, se desarrolló una prueba con el dataframe de testeo para observar cuál era la predicción, las palabras identificadas y la probabilidad de que sea spam.
 
 ## Pruebas de Rendimiento
+En primer lugar se obtuvo la matriz de confusión con la cuál se observa que se tiene un gran rendimiento dado que de 966 valores de ham se clasificaron correctamente 949 y 49 fueron falsos negativos de spam lo que equivale a  5.07% de error de clasificación de ham. Mientras que para la clasificación de ham se obtuvo que de 149 posibles textos spam, se clasificaron correctamente 129 y 20 fueron falsos negativos de spam, lo que equivale a un 13.42% de error en clasificación de spam para el testing.  
+![alt text](image-8.png)
+#### Ham
+* Precisión: 98%
+* Recall: 95%
+* f-1: 96%
+Para el Ham se obtuvo que el modelo tuvo una precisión del 98%, es decir que cuando predecía el modelo el 98% de las veces predijo correctamente, el teórico coincidía con el testeo. A su vez, se obtuvo un recall del 95% es decir que sobre el total de los posibles ham clasificó correctamente el ham en un 95%. Y finalmente el f-1 que es una especie de promedio entre recall y precision de un 96% de manera que fue bastante bueno.
+#### Spam
+* Precisión: 72%
+* Recall: 87%
+* f-1: 79%
+Para el Spam se obtuvo que el modelo tuvo una precisión del 72% es decir que cuando predecía el modelo, el 72% de las veces predijo correctamente, el teórico coincidía con el testeo. A su vez, se obtuvo un recall del 87% es decir que sobre el total de los posibles spam, clasificó correctamente el spam en un 87% de las veces, lo que concluyó que el f-1 fuera de un 79%.
+![alt text](image-9.png)
+
+### Discusión
