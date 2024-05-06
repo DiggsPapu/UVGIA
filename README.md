@@ -22,22 +22,23 @@ Después se realizó un conteo de palabras, de manera que se contaron cuántas v
 Tal como se pude observar se repiten palabras en ham y en spam, de manera que existen ciertas palabras que no pueden ser tan relevantes dado qeu aparecen en ambas múltiples veces.
 
 ## Modelo
-
 En primer lugar se dividió entre train y test el dataframe, así mismo, se calculó la probabilidad de que fuera un spam dependiendo de la frecuencia con la que aparece en textos spam o en textos ham. Después se desarrollo una función para predecir la probabilidad, la predicción de qué es sí la probabilidad es mayor a 0.5 y las palabras identificadas según un texto brindado. Así mismo, se desarrolló una prueba con el dataframe de testeo para observar cuál era la predicción, las palabras identificadas y la probabilidad de que sea spam.
 
 ## Pruebas de Rendimiento
 En primer lugar se obtuvo la matriz de confusión con la cuál se observa que se tiene un gran rendimiento dado que de 966 valores de ham se clasificaron correctamente 949 y 49 fueron falsos negativos de spam lo que equivale a  5.07% de error de clasificación de ham. Mientras que para la clasificación de ham se obtuvo que de 149 posibles textos spam, se clasificaron correctamente 129 y 20 fueron falsos negativos de spam, lo que equivale a un 13.42% de error en clasificación de spam para el testing.  
 ![alt text](image-8.png)
+![alt text](image-9.png)
+
 #### Ham
 * Precisión: 98%
 * Recall: 95%
 * f-1: 96%
-Para el Ham se obtuvo que el modelo tuvo una precisión del 98%, es decir que cuando predecía el modelo el 98% de las veces predijo correctamente, el teórico coincidía con el testeo. A su vez, se obtuvo un recall del 95% es decir que sobre el total de los posibles ham clasificó correctamente el ham en un 95%. Y finalmente el f-1 que es una especie de promedio entre recall y precision de un 96% de manera que fue bastante bueno.
+
 #### Spam
 * Precisión: 72%
 * Recall: 87%
 * f-1: 79%
-Para el Spam se obtuvo que el modelo tuvo una precisión del 72% es decir que cuando predecía el modelo, el 72% de las veces predijo correctamente, el teórico coincidía con el testeo. A su vez, se obtuvo un recall del 87% es decir que sobre el total de los posibles spam, clasificó correctamente el spam en un 87% de las veces, lo que concluyó que el f-1 fuera de un 79%.
-![alt text](image-9.png)
 
 ### Discusión
+
+Para este proyecto se logró el objetivo principal de clasificar mediante un modelo el spam y el ham. De manera que se obtuvo una precisión para el Ham de un 98% lo que significa que cuándo el modelo predecía el teórico coincidió con el testeo un 98% de las veces para el ham mientras que para el Spam fue un 72% de las veces. Así mismo, se obtuvo un recall para el ham del 95%, es decir que predijo correctamente un 95% de las veces, mientras que para el Spam fue un 87% de las veces. Finalmente, se obtuvo un 96% de efectividad para el Ham en el f-1 que es la media armónica entre la precisión y el recall, mientras que un 79% para el Spam. Por lo que se puede observar el modelo quedó bastante efectivo para el Ham que para el Spam, esto pudo haber surgido en primer lugar por la forma en la cuál se tokenizaron los datos ya que se utilizó una librería que tokenizaba y eliminaba los datos cómo puntos. Así mismo, pudo contribuír a este error la forma en la cuál se limpiaron los datos, dado que se filtraban también números y en los mensajes de Spam aparecen cosas como 2nd place, 3rd place y así. También pudo tener un peor rendimiento en los mensajes de Spam debido a que cómo se realizó una lematización y un stemming, pudieron haberse eliminado palabras o generado palabras que no tenían sentido debido a la naturaleza del stemming lo que derivaba en que algunas palabras del Spam perdieran su valor. Por ende, se recomienda que se dejaran números, se probara tokenizar mediante un método propio o un split de espacios y se eliminara el stemming y dejarlo en la lematización para que se dejen las palabras en una forma raíz y que no pierdan su significado.
