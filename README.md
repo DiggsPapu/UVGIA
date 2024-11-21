@@ -1,2 +1,15 @@
-# UVGIA
-Repositorio para almacenar todo el curso de IA en la UVG
+# Lab 1
+## Estructura de la branch
+Esta branch es para hacer el laboratorio 1 de inteligencia artificial, se debe de denotar que esa rama esta estructurada en dos carpetas:
+
+* Documents: Aqui estan los exceles que nos fueron brindados para las funciones de costos, heuristica, en que consistia el laboratorio y la resolucion de la parte 1, que se puede ver en draw.io
+
+* Part2: Aqui estaria implementado las estructuras de datos de las colas, los algoritmos de busqueda informada y desinformada y un main para ejecutar los algoritmos.
+## Primera parte
+La primera parte se encuentra en documentos, en un pdf ahí están los diagramas para resolver los algoritmos.
+
+## Discusion de la segunda parte
+En primer lugar, se notó que existe una diferencia notable entre las estructuras y la complejidad de las mismas dependiendo del algoritmo a utilizar. Por ejemplo, para el algoritmo de breadth first search no se necesitaba de mucha memoria dado que es el algoritmo más simple, de manera que solo se necesitaba el string en la cola y en el array de los nodos visitados para que se identifique al nodo en el grafo, un grafo que estaba desarrollado en un diccionario; a su vez no era necesario utilizar una función que comparara y en base a ella que organizara la cola, tal como sucede en las colas de prioridad, dado que esta utilizaba una cola lifo. Es por estas razones que no afectaba mucho en el tiempo de ejecución ya que no se tenía que realizar un ordenamiento, o se tenian que ir creando estructuras más complejas y probablemente ir a consultarlas. Lo mismo sucedía para el algoritmo de depth first search, significando en que esta fue la que mejor rendimiento en tiempo si se le brinda un nodo terminal, claro está, porque en caso de que no se le provea tendría que recorrer todo el árbol y eso implicaría un mayor tiempo tal como se puede observar. 
+Por otra parte los demás algoritmos al ser más complejos generaban que fuera mucho más lentos, significando que por ejemplo el UCS fuera el algoritmo más lento y también el que realiza mayor cantidad de iteraciones, además que se volvía complejo por la estructura de dato utilizada, ya que a los nodos además de tener el identificador, tendría el costo total para poder realizar el ordenamiento gracias a que es una cola de prioridad. Además, se debe de destacar que en el caso de este algoritmo se alargaba por su particularidad de evaluar los costos y elegir el costo menor. A su vez el greedy fue bastante rápido a pesar de la memoria que utilizaba y esto se explica gracias a que al basarse solo en heuristicas, no necesitaba de realizar muchos cálculos, implicando que realizara 5 iteraciones en el while. Finalmente uno de los más lentos fue el de A* que mezclaba tanto heuristicas como el costo, es por ello que además de utilizar más memoria, debía de realizar más operaciones que era de los más lentos.
+Sin embargo, hay que denotar que este grafo era extremadamente simple, es por ello que en realidad el desempeño y la mejora de los algoritmos informados se vería sustancialmente mejorado al momento de evaluar en grafos más grandes, al menos en la ejecución del tiempo.
+![DesempenioAlgoritmosBusqueda](https://github.com/DiggsPapu/UVGIA/assets/84475020/f05d9a5b-7a69-463a-8c79-04cf7fe1f24d)
